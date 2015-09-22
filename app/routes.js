@@ -33,6 +33,7 @@ module.exports = function(app) {
 	app.get('*', function(req, res) {
 		//console.log('received get command from frontend');
 		//console.log(req);
+		res.setHeader("Content-Type", "text/html");
 		res.sendfile('./public/views/index.html'); // load our public/index.html file
 	});
 };
