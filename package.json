@@ -1,17 +1,10 @@
 {
-  "name": "node-todo",
-  "version": "0.0.0",
-  "description": "Simple todo application.",
+  "name": "starter-node-angular",
   "main": "server.js",
-  "author": "Scotch",
   "dependencies": {
-    "express": "~4.7.2",
-    "mongoose": "~3.6.2",
-    "morgan": "~1.2.2",
-    "body-parser": "~1.5.2",
-    "method-override": "~2.1.2"
-  },
-  "devDependencies": {
-    "nodemon": "^1.4.1"
+    "express" : "~4.5.1",
+    "mongoose" : "~3.8.0",
+    "body-parser" : "~1.4.2",
+    "method-override" : "~2.0.2"        
   }
 }
