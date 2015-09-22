@@ -1,5 +1,6 @@
 /*-------------------------------------------------------------------
-README		single page application
+README		MEAN Stack Starter Kit
+			single page application
 -------------------------------------------------------------------*/
 
 scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
