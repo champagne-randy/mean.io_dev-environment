@@ -170,12 +170,19 @@ new directory structure
 --------- libraries/						# Raw front-end libraries
 --------- styles/							# Raw Sass files
 ---------------- base/						# Contains global styles, such as resets, typography, colors, etc.
+------------------- _module.scss
 ---------------- components/ 				# Contains each self-contained component in its own .scss partial
+------------------- _module.scss
 ---------------- layout/ 					# Contains styling for larger layout components; e.g. nav, header, footer, etc.
+------------------- _module.scss
 ---------------- pages/ 					# Contains page-specific styling, if necessary
+------------------- _module.scss
 ---------------- themes/ 					# Contains styling for different themes
+------------------- _module.scss
 ---------------- utils/ 					# Contains global mixins, functions, helper selectors, etc.
+------------------- _module.scss
 ---------------- vendors/ 					# Contains 3rd-party styles, mixins, etc.
+------------------- _module.scss
 ---------------- main.scss 					# Output file that brings together all of the above parts
 --------- shared/							# Container for reusable components (directives or partials) of our site
 ---------------- sidebar/
