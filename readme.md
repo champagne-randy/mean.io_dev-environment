@@ -34,7 +34,7 @@ ToDo
 
 - Angular best practices
 	- directory structure
-		research and apply techniques
+		x research and apply techniques
 		** update views after each dir update
 		** verify that build still works in browser
 
@@ -70,6 +70,9 @@ ToDo
 	- config file
 		use the same config file to abstract server settings
 		database
+	- directory structure
+		research and apply techniques
+		can I take a modular approach similar to the frontend organization?
 
 
 - Semantic.ui starter kit
@@ -84,6 +87,7 @@ ToDo
 - HTML templates
 	- research html templates and compile a pros/cons list
 		jade
+		swig
 
 - Git
 	- create a github remote for this project
@@ -95,13 +99,13 @@ ToDo
 
 
 ---------------------------------------------------------------------
-directory structure
+ol directory structure
 ---------------------------------------------------------------------
 
 - app
 --------- models/
 -------------- nerd.js <!-- the nerd model to handle CRUD -->
------ routes.js
+----- node.routes.js
 - config
 --------- db.js 
 - node_modules <!-- created by npm install -->
@@ -125,11 +129,91 @@ directory structure
 - server.js <!-- set up our node application -->
 
 
+
+
+
+---------------------------------------------------------------------
+new directory structure
+---------------------------------------------------------------------
+
+
+- server/ 									# All of the Server side code resides in the /server directory.
+------ config/     							# Configuration files
+------ controllers/							# Server side logic goes here
+------ models/     							# Database Schema Models
+------ routes/     							# Rest api endpoints for routing
+------ views/      							# Swig based html rendering
+- client/									# All of the Client side code resides in the /client directory.
+------ app/									# Modularized angular components (directives, views, services, controllers)
+--------- components/						# Each component (page) is treated as a mini Angular app (no directives)
+---------------- home/ 
+------------------- homeController.js 		# Controller file that handles data for home page
+------------------- homeRoutes.js 			# Routing file to handle all routes related to the home page
+------------------- homeService.js 			# Service file that handles http requests for home page
+------------------- homeView.html 			# (Partial) template for the home page
+---------------- blog/
+------------------- blogController.js 		# Controller file that handles data for blog page
+------------------- blogRoutes.js 			# Routing module to handle all routes related to the blog page
+------------------- blogService.js 			# Service file that handles http requests for blog page
+------------------- blogView.html 			# (Partial) template for the blog page
+---------------- core/						# Container for compnents that will remain the same accross the app
+------------------- header/
+----------------------- headerDirective.js 
+----------------------- headerView.html
+------------------- footer/
+----------------------- footerDirective.js 
+----------------------- footerView.html
+--------- config/							# Container for angular routes and modules files
+---------------- app.modules.js 			# This file will handle the setup for the Angular app
+---------------- app.routes.js 				# This file will handle all the routes and route configurations
+--------- images/							# Uncompressed images
+--------- libraries/						# Raw front-end libraries
+--------- styles/							# Raw Sass files
+---------------- base/						# Contains global styles, such as resets, typography, colors, etc.
+---------------- components/ 				# Contains each self-contained component in its own .scss partial
+---------------- layout/ 					# Contains styling for larger layout components; e.g. nav, header, footer, etc.
+---------------- pages/ 					# Contains page-specific styling, if necessary
+---------------- themes/ 					# Contains styling for different themes
+---------------- utils/ 					# Contains global mixins, functions, helper selectors, etc.
+---------------- vendors/ 					# Contains 3rd-party styles, mixins, etc.
+---------------- main.scss 					# Output file that brings together all of the above parts
+--------- shared/							# Container for reusable components (directives or partials) of our site
+---------------- sidebar/
+------------------- sidebarDirective.js 
+------------------- sidebarService.js
+------------------- sidebarView.html
+---------------- article/
+------------------- articleDirective.js
+------------------- articleView.html
+------ public/     							# These are the files that will be served to clients
+--------- css/								# responsive-ready compressed images that have been processed for dev
+--------- img/								# compiled & minified css files
+--------- js/								# minified javascript files
+--------- libs/								# frontend libraries
+------ index.html 							# primary (entry point) file where all Angular elements are loaded
+
+
+
+
+
+
+src: http://learn.mean.io/#mean-stack-packages-files-structure
+
+
+
+
 -----------------------
 commands
 -----------------------
 
-md -p app/models;md -p config;md -p public/css;md -p public/js;md -p public/js/controllers;md -p public/js/services;md -p public/img;md -p public/libs;md -p public/views
+md -p app/models;
+md -p config;md -p public/css;
+md -p public/js;
+md -p public/js/controllers;
+md -p public/js/services;
+md -p public/img;
+md -p public/libs;
+md -p public/views
 
 
 
