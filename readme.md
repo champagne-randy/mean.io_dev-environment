@@ -1,11 +1,29 @@
 /*-------------------------------------------------------------------
 README		MEAN Stack Starter Kit
+---------------------------------------------------------------------
 			single page application
 			www.scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
 -------------------------------------------------------------------*/
 
 
 
+---------------------------------------------------------------------
+How to use
+---------------------------------------------------------------------
+
+- update package.json
+	update package name
+	add license
+
+- $ npm install
+	to install all backend dependencies
+
+- update bower.json
+	update package name
+	list missing front end frameworks for project
+
+- $ bower install
+	to install all frontend dependencies
 
 
 
@@ -32,13 +50,40 @@ ToDo
 - Gulp best practices
 	- config file
 		once dir structures are define, update tasks to use config file
-		
+		config file will include:
+			port:			where node should attach
+			frontend lib:	which frontend lib are we using for this project
+			app server:		where the app should be deployed after build (if at all)
+	- use Scotch.io gulp starter kit as example on how to write a gulp build
+		https://github.com/scotch-io/gulp-start/blob/master/gulpfile.js
+	- write dev, test, and prod tasks
+		- this is the begining of the dev task
+		- I will use this to launch grunt for dev work
+		- once completed, will use it as a model for prod and test tasks
+		https://www.npmjs.com/package/gulp-nodemon
+
 
 - Server.js best practices
 	- config file
 		use the same config file to abstract server settings
 		database
 
+
+- Semantic.ui starter kit
+	- move semantic starter code to this repo
+	- update semantic.html file to be a base for sematic frontend projects
+
+
+- Bootstrap starter kit
+	- write a bootstrap.html file to be a base for bootstratp frontend projects
+
+
+- HTML templates
+	- research html templates and compile a pros/cons list
+		jade
+
+- Git
+	- create a github remote for this project
 
 
 

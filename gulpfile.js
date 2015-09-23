@@ -1,22 +1,21 @@
-// modules ==================================================
-var gulp	= require('gulp');
-// js linting
-var jshint	= require('gulp-jshint');
-var stylish = require('jshint-stylish');
-// css linting
-var csslint = require('gulp-csslint');
-// livereload
-var livereload = require('gulp-livereload');
+// modules =======================================================================
+var gulp		= require('gulp');				
+var jshint		= require('gulp-jshint');		// js linting
+var stylish 	= require('jshint-stylish');	// js lint reporter
+var csslint 	= require('gulp-csslint');		// css linting
+var livereload 	= require('gulp-livereload');
+var nodemon 	= require('gulp-nodemon');		
 
 
 
-// linting tasks ============================================
+// linting tasks =================================================================
 // js
 gulp.task('lint-js', function() {
 	return gulp.src('./public/js/**/*')
 		.pipe(jshint())
 		//.pipe(jshint.reporter('default'));
-		.pipe(jshint.reporter(stylish));
+		.pipe(jshint.reporter(stylish))
+		.pipe(livereload());					// refreshes browser after build
 });
 
 
@@ -60,7 +59,7 @@ gulp.task('lint-html', function() {
 
 
 
-// watch & livereload tasks =================================
+// watch & livereload tasks ======================================================
 /*
 	ToDo:
 	- abstract watched dir path, get it from config file
@@ -70,6 +69,31 @@ gulp.task('watch', function() {
 	livereload.listen();
 	gulp.watch('./public/js/**/*', ['lint-js']);
 });
+
+
+
+
+
+
+// develop tasks =================================================================
+/*
+	ToDo:
+	- this is the begining of the dev task
+	- I will use this to launch grunt for dev work
+	- once completed, will use it as a model for prod and test tasks
+	https://www.npmjs.com/package/gulp-nodemon
+*/ 
+/*
+gulp.task('develop', function () {
+  nodemon({ script: 'server.js'
+          , ext: 'html js'
+          , ignore: ['ignored.js']
+          , tasks: ['lint'] })
+    .on('restart', function () {
+      console.log('restarted!')
+    })
+})
+*/
 
 
 
