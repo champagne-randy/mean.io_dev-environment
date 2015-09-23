@@ -1,9 +1,38 @@
 /*-------------------------------------------------------------------
 README		MEAN Stack Starter Kit
 			single page application
+			www.scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
 -------------------------------------------------------------------*/
 
-scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
+
+
+
+
+
+
+---------------------------------------------------------------------
+ToDo
+---------------------------------------------------------------------
+
+- Angular best practices
+	- directory structure
+		research and apply techniques
+
+- SASS best practices
+	- directory structure
+		research and apply techniques
+
+- Gulp best practices
+	- config file
+		once dir structures are define, update tasks to use config file
+
+- Server.js best practices
+	- config file
+		use the same config file to abstract server settings
+		database
+
+
+
 
 
 
