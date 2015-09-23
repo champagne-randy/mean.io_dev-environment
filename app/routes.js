@@ -15,11 +15,11 @@ module.exports = function(app) {
 
 			// if there is an error retrieving, send the error
 			// nothing after res.send(err) will execute
-			if (err){ 
+			if (err){
 				console.log(err);
 				res.send(err);
 			}
-
+			console.log(nerds);
 			res.json(nerds);
 		});
 	});
@@ -31,7 +31,7 @@ module.exports = function(app) {
 	// route to handle all angular requests
 	// for all other routes, send user to the front end application so angular can handle the routing
 	app.get('*', function(req, res) {
-		//console.log('received get command from frontend');
+		console.log('received get command from frontend');
 		//console.log(req);
 		res.setHeader("Content-Type", "text/html");
 		res.sendfile('./public/views/index.html'); // load our public/index.html file
