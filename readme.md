@@ -17,14 +17,22 @@ ToDo
 - Angular best practices
 	- directory structure
 		research and apply techniques
+	- style guide
+		research and apply techniques
+		writing controllers for minification
+		skinny controllers: use services and application states over bloated controllers
+		modularize the app: split app code into components
+
 
 - SASS best practices
 	- directory structure
 		research and apply techniques
 
+
 - Gulp best practices
 	- config file
 		once dir structures are define, update tasks to use config file
+		
 
 - Server.js best practices
 	- config file
