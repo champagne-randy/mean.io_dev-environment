@@ -14,6 +14,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             controller: 'NerdController'
         });
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true); 
 
 }]);
