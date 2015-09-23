@@ -34,7 +34,7 @@ module.exports = function(app) {
 		console.log('received get command from frontend');
 		//console.log(req);
 		res.setHeader("Content-Type", "text/html");
-		res.sendfile('./public/views/index.html'); // load our public/index.html file
+		res.sendfile('./assets/views/index.html'); // load our assets/index.html file
 	});
 };
 
