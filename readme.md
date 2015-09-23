@@ -35,6 +35,9 @@ ToDo
 - Angular best practices
 	- directory structure
 		research and apply techniques
+		** update views after each dir update
+		** verify that build still works in browser
+
 	- style guide
 		research and apply techniques
 		writing controllers for minification
