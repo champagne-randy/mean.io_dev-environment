@@ -28,4 +28,7 @@ build/release
 node_modules
 
 # Frontend libraries installed using bower
-public/libs
+client/app/libraries
+
+# Frontend libraries in client asset dir
+client/public/libs
