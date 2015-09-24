@@ -93,6 +93,10 @@ ToDo
 	- create a github remote for this project
 
 
+- Linting
+	- where do I store the linting reports?
+
+
 
 
 
