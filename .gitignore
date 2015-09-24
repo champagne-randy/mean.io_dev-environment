@@ -32,3 +32,9 @@ client/app/libraries
 
 # Frontend libraries in client asset dir
 client/public/libs
+
+# Deleted folders and files
+._delete_*
+
+# Mac files
+.DS_Store
