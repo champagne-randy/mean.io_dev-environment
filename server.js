@@ -1,14 +1,15 @@
 // modules =================================================
-var express        = require('express');
-var app            = express();
-var bodyParser     = require('body-parser');
-var methodOverride = require('method-override');
+var express        	= require('express');
+var app            	= express();
+var bodyParser     	= require('body-parser');
+var methodOverride 	= require('method-override');
+var path			= require('path');
 
 
 
 // configuration ===========================================    
 // config files
-var db = require('./config/db');
+var db = require(path.join(__dirname, './server/config/database'));
 
 // set our port
 var port = process.env.PORT || 8080; 
@@ -30,13 +31,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
-// set the static files location /assets/img will be /img for users
-app.use(express.static(__dirname + '/assets')); 
+// set the static files location /public/img will be /img for users
+app.use(express.static(path.join(__dirname, 'client/public'))); 
 
 
 
 // routes ==================================================
-require('./app/node.routes')(app); // configure our routes
+require(path.join(__dirname, './server/routes/node.routes'))(app); // configure our routes
 
 
 

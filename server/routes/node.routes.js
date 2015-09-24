@@ -1,7 +1,9 @@
 
 
 // grab the nerd model we just created
-var Nerd = require('./models/nerd');
+var fs 		= require('fs');
+var path	= require('path');
+var Nerd 	= require(path.join(__dirname,'../models/nerd'));
 
 module.exports = function(app) {
 
@@ -33,16 +35,11 @@ module.exports = function(app) {
 	app.get('*', function(req, res) {
 		console.log('received get command from frontend');
 		//console.log(req);
-		res.setHeader("Content-Type", "text/html");
-		res.sendfile('./assets/views/index.html'); // load our assets/index.html file
+		//res.writeHead(200, { 'content-type': 'text/html' });
+		var file = path.join(__dirname, '../../client/public/views/index.html');
+		//fs.createReadStream(file).pipe(process.stdout);
+		fs.createReadStream(file).pipe(res);	// load our assets/index.html file
+		//res.end(); 
 	});
 };
-
-
-/*
-
-	Issues:
-	- what is the difference between front-end and back-end routes?
-
-*/
 

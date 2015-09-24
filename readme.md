@@ -197,6 +197,7 @@ new directory structure
 --------- img/								# compiled & minified css files
 --------- js/								# minified javascript files
 --------- libs/								# frontend libraries
+--------- views/							# html files to be served to client
 ------ index.html 							# primary (entry point) file where all Angular elements are loaded
 
 
