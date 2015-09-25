@@ -4,7 +4,8 @@ angular.module('sampleApp', [
 							'homeController', 
 							'nerdController', 
 							'nerdService',
-							'semanticController'
+							'semanticController',
+							'angularify.semantic.accordion'
 							]
 				);
 angular.module('appRoutes', [])
@@ -28,6 +29,10 @@ angular.module('appRoutes', [])
                 $locationProvider.html5Mode(true); 
             }
             ]);
+angular.module('homeController', [])
+	.controller('homeController', ['$scope', function($scope) {
+    	$scope.tagline = 'To the moon and back! Then back again bruh ^_^.';   
+	}]);
 angular.module('nerdController', [])
 	.controller('nerdController', ['$scope', function($scope) {
     	$scope.tagline = 'Nothing beats a pocket protector!';
@@ -54,10 +59,6 @@ angular.module('nerdService', [])
     }]);
 
  
-angular.module('homeController', [])
-	.controller('homeController', ['$scope', function($scope) {
-    	$scope.tagline = 'To the moon and back! Then back again bruh ^_^.';   
-	}]);
 angular.module('semanticController', [])
 	.controller('semanticController', ['$scope', function($scope) {
     	$scope.tagline = 'Hellz yeah. Vive la Semantique!';   

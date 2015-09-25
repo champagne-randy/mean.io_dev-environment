@@ -4,6 +4,7 @@ angular.module('sampleApp', [
 							'homeController', 
 							'nerdController', 
 							'nerdService',
-							'semanticController'
+							'semanticController',
+							'angularify.semantic.accordion'
 							]
 				);

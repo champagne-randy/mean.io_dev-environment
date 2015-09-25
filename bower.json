@@ -7,6 +7,7 @@
 		"animate.css": "latest",
 		"angular": "latest",
 		"angular-route": "latest",
-		"semantic-ui": "latest"
+		"semantic-ui": "latest",
+		"angular-semantic-ui": "latest"
 	}
 }

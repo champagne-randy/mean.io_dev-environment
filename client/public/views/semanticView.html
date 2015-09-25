@@ -97,50 +97,36 @@
 		add the follwing to the head element:
 			<script type="text/javascript" src="public/js/lib/accordion.min.js"></script>	(accordion script)
 			<link rel="stylesheet" href="public/css/accordion.min.css"></link>				(icon file) 
+	- Angular.JS directives provided for Semantic.ui accordion component work with Angular
+	- src: https://github.com/angularify/angular-semantic-ui/tree/master/src/accordion
+	- how to add icon to this directive?
 -->
-<div class="ui accordion">
-	<div class="active title">
-		<i class="dropdown icon"></i>
-		What is lipsum?
-	</div>
-	<div class="active content">
+<accordion close="true">
+	<accordion-group  title="What is lipsum?" open=true>
 		<div class="ui message red">
 			<div class="ui horizontal divider"><i class="github icon"></i></div>
 				<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
 		</div>
-	</div>
-	<div class="title">
-		<i class="dropdown icon"></i>
-		Why use lipsum?
-	</div>
-	<div class="content">
+	</accordion-group> 
+	<accordion-group  title="Why use lipsum?">				
 		<div class="ui message blue">
 			<div class="ui horizontal divider"><i class="dashboard icon"></i></div>
 			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
 		</div>
-	</div>
-	<div class="title">
-		<i class="dropdown icon"></i>
-		How awesome is lipsum?
-	</div>
-	<div class="content">
+	</accordion-group> 
+	<accordion-group  title="How awesome is lipsum?">	
 		<div class="ui message green">
 			<div class="ui horizontal divider"><i class="file icon"></i></div>
 			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
 		</div>
-	</div>
-	<div class="title">
-		<i class="dropdown icon"></i>
-		How long is lipsum?
-	</div>
-	<div class="content">
+	</accordion-group> 
+	<accordion-group  title="How long is lipsum?">		
 		<div class="ui message orange">
 			<div class="ui horizontal divider"><i class="desktop icon"></i></div>
 			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
 		</div>
-	</div>
-</div>
-
+	</accordion-group> 
+</accordion>
 
 
 <!--~~~~~~~ [forms] ~~~~~~~-->

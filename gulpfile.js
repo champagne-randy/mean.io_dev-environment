@@ -54,8 +54,7 @@ paths = {
 gulp.task('lint-js', function() {
 	return gulp.src( paths.js )
 		.pipe( jshint() )
-		.pipe( jshint.reporter( stylish ))
-		.pipe( livereload() );
+		.pipe( jshint.reporter( stylish ));
 });
 
 // sass
@@ -65,8 +64,7 @@ gulp.task('lint-js', function() {
 */
 gulp.task('lint-sass', function() {
 	return gulp.src( paths.sass )
-    	.pipe( scsslint() )
-    	.pipe( livereload() );
+    	.pipe( scsslint() );
 })
 
 // html
@@ -98,7 +96,8 @@ gulp.task('process-scripts', ['clean-js'], function() {
 		.pipe( gulp.dest( paths.jsOut ))
 		.pipe( rename( {suffix: '-min'} ))
 		.pipe( uglify() )
-		.pipe( gulp.dest( paths.jsOut ));
+		.pipe( gulp.dest( paths.jsOut ))
+    	.pipe( livereload() );
 });
 
 // sass
@@ -108,14 +107,16 @@ gulp.task('process-styles', ['clean-css'], function() {
 		.pipe( gulp.dest( paths.cssOut ) )
 		.pipe( rename({suffix: '-min'}) )
 		.pipe( minifycss() )
-		.pipe( gulp.dest( paths.cssOut ) );
+		.pipe( gulp.dest( paths.cssOut ) )
+    	.pipe( livereload() );
 });
 
 // html
 gulp.task('process-html', ['clean-html'], function() {
 	return gulp.src( paths.html )
 		.pipe( flatten() )
-		.pipe( gulp.dest( paths.htmlOut ));
+		.pipe( gulp.dest( paths.htmlOut ))
+    	.pipe( livereload() );
 });
 
 // images
@@ -126,7 +127,8 @@ gulp.task('process-html', ['clean-html'], function() {
 gulp.task('process-images', ['clean-img'], function() {
   return gulp.src( paths.images )
 		.pipe( imagemin( {optimizationLevel: 5} ))
-		.pipe( gulp.dest( paths.imgOut ));
+		.pipe( gulp.dest( paths.imgOut ))
+    	.pipe( livereload() );
 });
 
 
@@ -142,7 +144,8 @@ gulp.task('clean-js', function () {
 // css 
 gulp.task('clean-css', function () {
     return gulp.src( paths.cssOut, {read: false} )
-        .pipe( clean() );
+        .pipe( clean() )
+    	.pipe( livereload() );
 });
 
 // html
