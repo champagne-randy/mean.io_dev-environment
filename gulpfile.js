@@ -19,6 +19,7 @@ var concat 			= require('gulp-concat');		// used to concatenate multiple files i
 var uglify 			= require('gulp-uglify');		// used to obfuscate code
 var flatten 		= require('gulp-flatten');		// used to flatten directory structure on output
 var clean 			= require('gulp-clean');		// used to clear public directory before build
+var imagemin 		= require('gulp-imagemin');		// used to reduce image sizes
 
 
 
@@ -32,10 +33,11 @@ paths = {
 	js: 		['./client/app/**/*.js', '!client/app/styles/**'],
 	html: 		['./client/app/**/*.html', '!client/app/styles/**'],
 	sass: 		['./client/app/styles/**/*.scss', './client/app/styles/main.scss', '!client/app/styles/vendors/**'],
+	img: 		['./client/app/images/**/*'],
 	jsOut: 		'./client/public/js/',
 	htmlOut: 	'./client/public/views/',
 	cssOut: 	'./client/public/css/',
-
+	imgOut: 	'./client/public/img/'
 };
 
 
@@ -114,6 +116,17 @@ gulp.task('process-html', function() {
 		.pipe( gulp.dest( paths.htmlOut ));
 });
 
+// images
+/*
+	ToDo:
+	- implement the image build task
+*/
+gulp.task('process-images', ['clean'], function() {
+  return gulp.src( paths.images )
+		.pipe( imagemin( {optimizationLevel: 5} ))
+		.pipe( gulp.dest( paths.imgOut ));
+});
+
 
 
 
@@ -132,7 +145,7 @@ gulp.task('clean-css', function () {
 
 // html
 gulp.task('clean-html', function () {
-    return gulp.src( paths.html, {read: false} )
+    return gulp.src( paths.htmlOut, {read: false} )
         .pipe( clean() );
 });
 
@@ -142,9 +155,10 @@ gulp.task('clean-html', function () {
 // watch & livereload tasks ======================================================
 gulp.task('watch', function() {
 	livereload.listen();
-	gulp.watch( paths.js, 	['lint-js', 'clean-js', 'process-scripts']);
-	gulp.watch( paths.sass, ['lint-sass', 'clean-css', 'process-styles']);
-	gulp.watch( paths.html,	['clean-css', 'process-html']);
+	gulp.watch( paths.js, 		['lint-js', 'clean-js', 'process-scripts']);
+	gulp.watch( paths.sass, 	['lint-sass', 'clean-css', 'process-styles']);
+	gulp.watch( paths.html,		['clean-css', 'process-html']);
+	gulp.watch( paths.images 	['process-images']);
 });
 
 
