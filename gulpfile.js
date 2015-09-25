@@ -1,12 +1,18 @@
 // modules =======================================================================
-var gulp		= require('gulp');				
-var jshint		= require('gulp-jshint');		// js linting
-var stylish 	= require('jshint-stylish');	// js lint reporter
-var csslint 	= require('gulp-csslint');		// css linting
-var scsslint 	= require('gulp-scss-lint');	// sass linting
-var livereload 	= require('gulp-livereload');
-var nodemon 	= require('gulp-nodemon');		
-var path 		= require('path');
+var gulp			= require('gulp');				
+var jshint			= require('gulp-jshint');		// js linting
+var stylish 		= require('jshint-stylish');	// js lint reporter
+var csslint 		= require('gulp-csslint');		// css linting
+var scsslint 		= require('gulp-scss-lint');	// sass linting
+var sass 			= require('gulp-ruby-sass');	// sass processing
+var livereload 		= require('gulp-livereload');
+var nodemon 		= require('gulp-nodemon');		
+var path 			= require('path');
+var autoprefixer 	= require('gulp-autoprefixer');	// used to add browser specific prefixes to css code
+var minifycss 		= require('gulp-minify-css');	// used to minify css files
+var rename 			= require('gulp-rename');		// used to change the name of the ouput file (add .min)
+var concat 			= require('gulp-concat');		// used to concatenate multiple files into one
+var uglify 			= require('gulp-uglify');		// used to obfuscate code
 
 
 
@@ -16,10 +22,13 @@ var path 		= require('path');
 	- add the various paths
 */
 paths = {
-	js: 	['./client/app/**/*.js', '!client/app/styles/**'],
-	html: 	[],
-	css: 	[],
-	sass: 	['./client/app/styles/*.scss']
+	js: 		['./client/app/**/*.js', '!client/app/styles/**'],
+	jade: 		[],
+	sass: 		['./client/app/styles/**/*.scss', './client/app/styles/main.scss', '!client/app/styles/vendors/**'],
+	jsOut: 		['./client/public/js/'],
+	htmlOut: 	['./client/public/views/'],
+	cssOut: 	['./client/public/css/'],
+
 };
 
 
@@ -28,13 +37,14 @@ paths = {
 // js
 /*
 	ToDo:
-	- update directories
+	x update directories
+	- add code for outputing linting reports to file
 */
 gulp.task('lint-js', function() {
 	return gulp.src( paths.js )
-		.pipe(jshint())
-		.pipe(jshint.reporter(stylish))
-		.pipe(livereload());					// refreshes browser after build
+		.pipe( jshint() )
+		.pipe( jshint.reporter(stylish) )
+		.pipe( livereload() );					// refreshes browser after build
 });
 
 
@@ -56,15 +66,13 @@ gulp.task('lint-js', function() {
 // sass
 /*
 	ToDo:
-	- implement SASS linting task
-
-	Dependencies:
-	- I prolly should wait until I define a SASS dir structure
+	x implement SASS linting task
+	- add code for outputing linting reports to file
 */
 gulp.task('lint-sass', function() {
 	return gulp.src( paths.sass )
-    	.pipe(scsslint())
-    	.pipe(livereload());
+    	.pipe( scsslint() )
+    	.pipe( livereload() );
 })
  
 
@@ -101,12 +109,12 @@ gulp.task('lint-html', function() {
 	- update directory structures
 */
 gulp.task('process-styles', function() {
-	return sass('./src/styles/main.scss', {style: 'expanded'})
-		.pipe(autoprefixer('last 2 version'))
-		.pipe(gulp.dest('./dest/styles/'))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(minifycss())
-		.pipe(gulp.dest('./dest/styles/'));
+	return sass( paths.sass[1], {style: 'expanded'} )
+		.pipe( autoprefixer('last 2 version') )
+		.pipe( gulp.dest( paths.cssOut[0] ) )
+		.pipe( rename({suffix: '.min'}) )
+		.pipe( minifycss() )
+		.pipe( gulp.dest( paths.cssOut[0] ) );
 });
 
 
@@ -116,13 +124,12 @@ gulp.task('process-styles', function() {
 	ToDo:
 	- abstract watched dir path, get it from config file
 	- add additional folders to watch i.e. css, scss, html
-	- update directory structures
+	x update directory structures
 */
 gulp.task('watch', function() {
 	livereload.listen();
-	gulp.watch( paths.js, ['lint-js'] );
-	gulp.watch( paths.sass, ['lint-sass'] );
-	gulp.watch( './src/styles/*.scss', ['process-styles'] );
+	gulp.watch( paths.js, 	['lint-js'] );
+	gulp.watch( paths.sass, ['lint-sass', 'process-styles'] );
 });
 
 
