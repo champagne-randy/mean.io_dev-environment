@@ -17,13 +17,9 @@ var uglify 			= require('gulp-uglify');		// used to obfuscate code
 
 
 // build config =================================================================
-/*
-	ToDo:
-	- add the various paths
-*/
 paths = {
 	js: 		['./client/app/**/*.js', '!client/app/styles/**'],
-	jade: 		[],
+	html: 		['./client/app/**/*.html', '!client/app/styles/**'],
 	sass: 		['./client/app/styles/**/*.scss', './client/app/styles/main.scss', '!client/app/styles/vendors/**'],
 	jsOut: 		['./client/public/js/'],
 	htmlOut: 	['./client/public/views/'],
@@ -43,23 +39,9 @@ paths = {
 gulp.task('lint-js', function() {
 	return gulp.src( paths.js )
 		.pipe( jshint() )
-		.pipe( jshint.reporter(stylish) )
-		.pipe( livereload() );					// refreshes browser after build
+		.pipe( jshint.reporter( stylish ))
+		.pipe( livereload() );
 });
-
-
-
-// css 
-/*
-	ToDo:
-	- decide if I actually need this. Since I am using sass, I don't plan on writing css
-	- but I might end up using 3rd party libraries i.e. polyfills
-*/
-// gulp.task('lint-css', function() {
-// 	return gulp.src('./public/css/**/*.css')
-// 		.pipe(csslint())
-// 		.pipe(csslint.reporter());
-// });
 
 
 
