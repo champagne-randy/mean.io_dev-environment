@@ -28,12 +28,14 @@ var imagemin 		= require('gulp-imagemin');		// used to reduce image sizes
 /*
 	ToDo:
 	- consider moving this to app.config as gulp.paths
+	- add support for incremental builds. Only re-process files that have changed
+		https://github.com/gulpjs/gulp
 */
 paths = {
 	js: 		['./client/app/**/*.js', '!client/app/styles/**'],
 	html: 		['./client/app/**/*.html', '!client/app/styles/**'],
 	sass: 		['./client/app/styles/**/*.scss', './client/app/styles/main.scss', '!client/app/styles/vendors/**'],
-	img: 		['./client/app/images/**/*'],
+	images: 	['./client/app/images/**/*'],
 	jsOut: 		'./client/public/js/',
 	htmlOut: 	'./client/public/views/',
 	cssOut: 	'./client/public/css/',
@@ -90,7 +92,7 @@ gulp.task('lint-html', function() {
 	ToDo:
 	- minification doesn't work
 */
-gulp.task('process-scripts', function() {
+gulp.task('process-scripts', ['clean-js'], function() {
 	return gulp.src( paths.js )
 		.pipe( concat( 'app.js' ))
 		.pipe( gulp.dest( paths.jsOut ))
@@ -100,7 +102,7 @@ gulp.task('process-scripts', function() {
 });
 
 // sass
-gulp.task('process-styles', function() {
+gulp.task('process-styles', ['clean-css'], function() {
 	return sass( paths.sass[1], {style: 'expanded'} )
 		.pipe( autoprefixer('last 2 version') )
 		.pipe( gulp.dest( paths.cssOut ) )
@@ -110,7 +112,7 @@ gulp.task('process-styles', function() {
 });
 
 // html
-gulp.task('process-html', function() {
+gulp.task('process-html', ['clean-html'], function() {
 	return gulp.src( paths.html )
 		.pipe( flatten() )
 		.pipe( gulp.dest( paths.htmlOut ));
@@ -121,7 +123,7 @@ gulp.task('process-html', function() {
 	ToDo:
 	- implement the image build task
 */
-gulp.task('process-images', ['clean'], function() {
+gulp.task('process-images', ['clean-img'], function() {
   return gulp.src( paths.images )
 		.pipe( imagemin( {optimizationLevel: 5} ))
 		.pipe( gulp.dest( paths.imgOut ));
@@ -149,17 +151,42 @@ gulp.task('clean-html', function () {
         .pipe( clean() );
 });
 
+// images
+gulp.task('clean-img', function () {
+    return gulp.src( paths.imgOut, {read: false} )
+        .pipe( clean() );
+});
+
 
 
 
 // watch & livereload tasks ======================================================
 gulp.task('watch', function() {
 	livereload.listen();
-	gulp.watch( paths.js, 		['lint-js', 'clean-js', 'process-scripts']);
-	gulp.watch( paths.sass, 	['lint-sass', 'clean-css', 'process-styles']);
-	gulp.watch( paths.html,		['clean-css', 'process-html']);
+	gulp.watch( paths.js, 		['lint-js', 'process-scripts']);
+	gulp.watch( paths.sass, 	['lint-sass', 'process-styles']);
+	gulp.watch( paths.html,		['process-html']);
 	gulp.watch( paths.images 	['process-images']);
 });
+
+
+
+
+// default tasks ======================================================
+gulp.task('default', [
+						'watch', 
+						'lint-js',
+						'clean-js',
+						'process-scripts',
+						'lint-sass',
+						'clean-css',
+						'process-styles',
+						'clean-html',
+						'process-html',
+						'clean-img',
+						'process-images'
+					]
+);
 
 
 
