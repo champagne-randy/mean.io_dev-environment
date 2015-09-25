@@ -1,4 +1,8 @@
 // modules =======================================================================
+/*
+	ToDo:
+	- consider mving this to app.config as gulp.plugins
+*/
 var gulp			= require('gulp');				
 var jshint			= require('gulp-jshint');		// js linting
 var stylish 		= require('jshint-stylish');	// js lint reporter
@@ -13,19 +17,27 @@ var minifycss 		= require('gulp-minify-css');	// used to minify css files
 var rename 			= require('gulp-rename');		// used to change the name of the ouput file (add .min)
 var concat 			= require('gulp-concat');		// used to concatenate multiple files into one
 var uglify 			= require('gulp-uglify');		// used to obfuscate code
+var flatten 		= require('gulp-flatten');		// used to flatten directory structure on output
+var clean 			= require('gulp-clean');		// used to clear public directory before build
+
 
 
 
 // build config =================================================================
+/*
+	ToDo:
+	- consider moving this to app.config as gulp.paths
+*/
 paths = {
 	js: 		['./client/app/**/*.js', '!client/app/styles/**'],
 	html: 		['./client/app/**/*.html', '!client/app/styles/**'],
 	sass: 		['./client/app/styles/**/*.scss', './client/app/styles/main.scss', '!client/app/styles/vendors/**'],
-	jsOut: 		['./client/public/js/'],
-	htmlOut: 	['./client/public/views/'],
-	cssOut: 	['./client/public/css/'],
+	jsOut: 		'./client/public/js/',
+	htmlOut: 	'./client/public/views/',
+	cssOut: 	'./client/public/css/',
 
 };
+
 
 
 
@@ -33,7 +45,6 @@ paths = {
 // js
 /*
 	ToDo:
-	x update directories
 	- add code for outputing linting reports to file
 */
 gulp.task('lint-js', function() {
@@ -43,12 +54,9 @@ gulp.task('lint-js', function() {
 		.pipe( livereload() );
 });
 
-
-
 // sass
 /*
 	ToDo:
-	x implement SASS linting task
 	- add code for outputing linting reports to file
 */
 gulp.task('lint-sass', function() {
@@ -56,8 +64,6 @@ gulp.task('lint-sass', function() {
     	.pipe( scsslint() )
     	.pipe( livereload() );
 })
- 
-
 
 // html
 /*
@@ -75,43 +81,70 @@ gulp.task('lint-html', function() {
 
 
 
+
 // build tasks ===================================================================
-// Sass
-/*
-
-*/
-
-
-
-
-
-// minify CSS
+// js
 /*
 	ToDo:
-	- update directory structures
+	- minification doesn't work
 */
+gulp.task('process-scripts', function() {
+	return gulp.src( paths.js )
+		.pipe( concat( 'app.js' ))
+		.pipe( gulp.dest( paths.jsOut ))
+		.pipe( rename( {suffix: '-min'} ))
+		.pipe( uglify() )
+		.pipe( gulp.dest( paths.jsOut ));
+});
+
+// sass
 gulp.task('process-styles', function() {
 	return sass( paths.sass[1], {style: 'expanded'} )
 		.pipe( autoprefixer('last 2 version') )
-		.pipe( gulp.dest( paths.cssOut[0] ) )
-		.pipe( rename({suffix: '.min'}) )
+		.pipe( gulp.dest( paths.cssOut ) )
+		.pipe( rename({suffix: '-min'}) )
 		.pipe( minifycss() )
-		.pipe( gulp.dest( paths.cssOut[0] ) );
+		.pipe( gulp.dest( paths.cssOut ) );
+});
+
+// html
+gulp.task('process-html', function() {
+	return gulp.src( paths.html )
+		.pipe( flatten() )
+		.pipe( gulp.dest( paths.htmlOut ));
 });
 
 
 
+
+// clean tasks ==================================================================
+// js 
+gulp.task('clean-js', function () {
+    return gulp.src( paths.jsOut, {read: false} )
+        .pipe( clean() );
+});
+
+// css 
+gulp.task('clean-css', function () {
+    return gulp.src( paths.cssOut, {read: false} )
+        .pipe( clean() );
+});
+
+// html
+gulp.task('clean-html', function () {
+    return gulp.src( paths.html, {read: false} )
+        .pipe( clean() );
+});
+
+
+
+
 // watch & livereload tasks ======================================================
-/*
-	ToDo:
-	- abstract watched dir path, get it from config file
-	- add additional folders to watch i.e. css, scss, html
-	x update directory structures
-*/
 gulp.task('watch', function() {
 	livereload.listen();
-	gulp.watch( paths.js, 	['lint-js'] );
-	gulp.watch( paths.sass, ['lint-sass', 'process-styles'] );
+	gulp.watch( paths.js, 	['lint-js', 'clean-js', 'process-scripts']);
+	gulp.watch( paths.sass, ['lint-sass', 'clean-css', 'process-styles']);
+	gulp.watch( paths.html,	['clean-css', 'process-html']);
 });
 
 

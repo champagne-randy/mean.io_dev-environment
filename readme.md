@@ -170,6 +170,7 @@ new directory structure
 --------- config/							# Container for angular routes and modules files
 ---------------- app.modules.js 			# This file will handle the setup for the Angular app
 ---------------- app.routes.js 				# This file will handle all the routes and route configurations
+---------------- index.html 				# primary (entry point) file where all Angular elements are loaded
 --------- images/							# Uncompressed images
 --------- libraries/						# Raw front-end libraries
 --------- styles/							# Raw Sass files
