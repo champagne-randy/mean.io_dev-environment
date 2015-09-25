@@ -3,6 +3,7 @@ angular.module('sampleApp', [
 							'appRoutes', 
 							'homeController', 
 							'nerdController', 
-							'nerdService'
+							'nerdService',
+							'semanticController'
 							]
 				);

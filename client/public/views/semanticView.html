@@ -1,0 +1,215 @@
+<div class="jumbotron text-center">
+	<h1>It's Semantic Baby</h1>
+
+	<p>{{ tagline }}</p>
+</div>
+
+<!--
+	ToDo:
+	- hook up a gulp build to this file
+	- add a linting engine in build process
+	- add lorem ipsum generator to sublime text
+	- swap this pre-v1 version of semantic for the latest v2.1
+-->
+
+<!-- 
+	Note:
+	- Semantic provides simple traceability in console
+-->
+
+
+<!--~~~~~~~ [nav menu] ~~~~~~~-->
+<!--
+	Issues:
+	- why the fuck are the css classes not staying after reload?
+		because I added the href attribute to the god damn <a> elements
+-->
+
+<!-- 
+	Note:
+	- This is how you create a .navBar 
+	- we can use any of the new elements
+	- the responsiveness is not very smooth for floated items pre version 1
+-->
+<div class="ui menu">
+	<h3 class="header item">Brand</h3>
+	<a class="active green item" ng-click="updateActive">tab 1</a>
+	<a class="red item" ng-click="updateActive">tab 2</a>
+	<a class="blue item" ng-click="updateActive">tab 3</a>
+	<a class="orange item" ng-click="updateActive">tab 4</a>
+	<span class="floated right item">Signed in as <a href ="#">User</a></span>
+</div>
+
+
+
+<!--~~~~~~~ [responsive grid] ~~~~~~~-->
+<!--
+	Issues;
+	- ok this is fine and dandy. How do I set the height of the grid?
+	- what if I want to add a border to see the edge of the grids?
+-->
+
+<!--
+	Note:
+	- The .number tells semantic how many columns to make space for
+	- Higher .number in class leads to smaller size columns
+-->
+<div class="ui four column grid">
+	<div class="column computer only"> <!-- computer only class will make div appear only on large screen devices-->
+		<div class="ui message red">
+			<div class="ui horizontal divider"><i class="github icon"></i></div>
+				<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+	<div class="column mobile only"> <!-- computer only class will make div appear only on mobile devices-->
+		<div class="ui message blue">
+			<div class="ui horizontal divider"><i class="dashboard icon"></i></div>
+			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+	<div class="column tablet only"> <!-- computer only class will make div appear only on tablet devices-->
+		<div class="ui message green">
+			<div class="ui horizontal divider"><i class="file icon"></i></div>
+			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+	<div class="column">
+		<div class="ui message orange">
+			<div class="ui horizontal divider"><i class="desktop icon"></i></div>
+			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+</div>
+
+
+
+<!--~~~~~~~ [responsive grid: accordion] ~~~~~~~-->
+<!--
+	Issues:
+	
+-->
+
+<!--
+	Note:
+	- This only works because of the '$('.accordion').accordion();' in the main.js file
+	- You can just include the accordion module from semantic if that's all you care about for your project
+		You don't need to include the whole framework just for one item
+		add the follwing to the head element:
+			<script type="text/javascript" src="public/js/lib/accordion.min.js"></script>	(accordion script)
+			<link rel="stylesheet" href="public/css/accordion.min.css"></link>				(icon file) 
+-->
+<div class="ui accordion">
+	<div class="active title">
+		<i class="dropdown icon"></i>
+		What is lipsum?
+	</div>
+	<div class="active content">
+		<div class="ui message red">
+			<div class="ui horizontal divider"><i class="github icon"></i></div>
+				<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+	<div class="title">
+		<i class="dropdown icon"></i>
+		Why use lipsum?
+	</div>
+	<div class="content">
+		<div class="ui message blue">
+			<div class="ui horizontal divider"><i class="dashboard icon"></i></div>
+			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+	<div class="title">
+		<i class="dropdown icon"></i>
+		How awesome is lipsum?
+	</div>
+	<div class="content">
+		<div class="ui message green">
+			<div class="ui horizontal divider"><i class="file icon"></i></div>
+			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+	<div class="title">
+		<i class="dropdown icon"></i>
+		How long is lipsum?
+	</div>
+	<div class="content">
+		<div class="ui message orange">
+			<div class="ui horizontal divider"><i class="desktop icon"></i></div>
+			<a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id rutrum libero, ac viverra ex. Cras quis augue vestibulum, tincidunt enim sit amet, venenatis mi. Nam lacinia ultricies lacus eget commodo. Aliquam semper nulla luctus dapibus semper. Nulla tempor ut eros quis auctor. Mauris sed justo ultricies, porta diam sed, scelerisque diam. Sed ut tortor velit.</a>
+		</div>
+	</div>
+</div>
+
+
+
+<!--~~~~~~~ [forms] ~~~~~~~-->
+<!--
+	Issues:
+	
+-->
+
+<!--
+	Note:
+	
+-->
+<form class="ui form segment">	<!-- '.segment class' just makes the form prettier-->
+	<div class="two fields">
+		<div class="field">
+			<label for="first-name">First Name</label>
+			<input placeholder="First Name" name="first-name" type="text">
+		</div>
+		<div class="field">
+			<label for="last-name">Last Name</label>
+			<input placeholder="Last Name" name="last-name" type="text">
+		</div>
+	</div>
+	<div class="field">
+		<label for="username">Username</label>
+		<input placeholder="Username" name="Username" type="text" autocomplete="off">
+	</div>
+	<div class="field">
+		<label for="password">Password</label>
+		<input name="password" type="password" autocomplete="off">
+	</div>
+	<button class="ui blue submit button">Submit</button>
+	<div class="ui error yellow message"></div>
+</form>
+
+
+
+
+<!--~~~~~~~ [modals] ~~~~~~~-->
+<!--
+	Issues:
+	
+-->
+
+<!--
+	Note:
+	- This is how I create a photo slideshow
+	- This is basically a lightbox!
+	- .modal is responsive. It will move isht out the way if there is not enough space
+-->
+<div class="ui modal">
+	<i class="close icon"></i>		<!-- I can use this .close .icon in churchie menu -->
+	<div class="header">
+		Header
+	</div>
+	<div class="content">
+		<div class="left">			<!-- will automatically shift items to the left inside the modal -->
+			Some content to the left, usually an image or icon
+		</div>
+		<div class="right">			<!-- will automatically shift items to the right inside the modal -->
+			Some content to the right
+		</div>
+	</div>
+	<div class="actions">
+		<button class="ui negative button">
+			Cancel
+		</button>
+		<button class="ui positive button">
+			Okay
+		</button>
+	</div>
+</div>

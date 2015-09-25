@@ -11,6 +11,10 @@ angular.module('appRoutes', [])
                     .when('/nerds', {
                         templateUrl: '/views/nerdView.html',
                         controller: 'nerdController'
+                    })
+                    .when('/semantic', {
+                        templateUrl: '/views/semanticView.html',
+                        controller: 'semanticController'
                     });
                 $locationProvider.html5Mode(true); 
             }

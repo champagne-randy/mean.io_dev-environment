@@ -4,15 +4,22 @@
 	    <meta charset="UTF-8">
 	    <base href="/">	
 	    <title>Starter Node and Angular</title>	
-	    <!-- vendor styles -->
-	    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.css" type="text/css">
-	    <!-- custom app styles -->
-		<link rel="stylesheet" href="/css/main.css" type="text/css"> 
-	    <!-- vendor scripts -->
+	    <!-- vendor: twitter bootstrap -->
+	    <link href="/libs/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet">
+	    <!-- vendor: angular -->
 	    <script src="/libs/angular/angular.js" type="text/javascript"></script>
 	    <script src="/libs/angular-route/angular-route.js" type="text/javascript"></script>
+	    <!-- vendor: jquery -->
+	    <script src="/libs/jquery/dist/jquery.js" type="text/javascript"></script>
+	    <!-- vendor: semantic-ui -->
+	    <link href="/libs/semantic-ui/semantic.css" type="text/css"  rel="stylesheet"></link>
+	    <script src="/libs/semantic-ui/semantic.js" type="text/javascript"></script>
+	    <link href="/libs/semantic-ui/components/accordion.css" rel="stylesheet" type="text/css">
+	    <script src="/libs/semantic-ui/components/accordion.js" type="text/javascript"></script>
+	    <!-- custom app styles -->
+		<link rel="stylesheet" href="/css/main.css" type="text/css"> 
 	    <!-- custom app scripts -->
-	    <script src="/js/app-min.js" type="text/javascript"></script>
+	    <script src="/js/app.js" type="text/javascript"></script>
 	</head>
 	<body ng-app="sampleApp" ng-controller="nerdController">
 		<div class="container">		
@@ -24,6 +31,7 @@
 		        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
 		        <ul class="nav navbar-nav">
 		            <li><a href="/nerds">Nerds</a></li>
+		            <li><a href="/semantic">semantic</a></li>
 		        </ul>
 		    </nav>		
 		    <!-- ANGULAR DYNAMIC CONTENT -->
