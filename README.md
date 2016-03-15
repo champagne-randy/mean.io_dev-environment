@@ -14,7 +14,7 @@
 
 This project is a mashup of best practices I learned over the years. The basic ideas for this project stemmed from several articles written by the wonderful folks over at [Scotch.io](https://scotch.io/). 
 
-Dr. Jogesh K. Muppala's [Full Stack Web Development](https://www.coursera.org/specializations/full-stack) mooc on Coursera filled in the gaps and provided the final structure/architeture.
+Materials from Dr. Jogesh K. Muppala's [Full Stack Web Development](https://www.coursera.org/specializations/full-stack) mooc on Coursera filled the gaps and provided the final structure/architeture.
 
 Many Thanks to all fournished the ideas that seeded this project
 
