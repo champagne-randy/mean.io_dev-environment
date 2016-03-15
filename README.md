@@ -1,33 +1,30 @@
 ![mobble](http://cloud.scott.ee/images/mobble.png)
 
-# mobble
+# MEAN Stack Development Environment
 
 * Status: ✔ Active
-* Contributors: [@scottsweb](http://twitter.com/scottsweb)
-* Description: Helper plugin that provides conditional functions for detecting a variety of mobile devices & tablets.
-* Author: [Scott Evans](http://scott.ee)
-* Author URI: [http://scott.ee](http://scott.ee)
+* Contributors: [@randychampagne](http://twitter.com/randychampagne)
+* Description: This is the sandbox I use to develop mobile-first web applications on a MongoDB ExpressJS AngularJS NodeJS stack
+* Author: [Randy Champagne](http://www.randychampagne.com)
+* Author URI: [http://www.randychampagne.com](http://www.randychampagne.com)
 * License: GNU General Public License v2.0
 * License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
 ## About
 
-mobble provides mobile related conditional functions for your site. e.g. `is_iphone()`, `is_mobile()` and `is_tablet()`.
+This project is a mashup of best practices I learned over the years. The basic ideas for this project stemmed from several articles written by the wonderful folks over at [Scotch.io](https://scotch.io/). 
 
-CSS media queries are great for creating responsive web designs but they do not always provide enough control. There are times when not all of the content, JavaScript or CSS on a page is relevant for a particular device. With the mobble functions you can make these kind of tweaks to your theme.
+Dr. Jogesh K. Muppala's [Full Stack Web Development](https://www.coursera.org/specializations/full-stack) mooc on Coursera filled in the gaps and provided the final structure/architeture.
 
-mobble can also add device information to the body class of your theme allowing you to easily target your CSS for different gadgets.
+Many Thanks to all fournished the ideas that seeded this project
+
 
 ## Installation
 
 To install this plugin:
 
-* Upload the `mobble` folder to the `/wp-content/plugins/` directory
-* Activate the plugin through the 'Plugins' menu in WordPress
-* You can now use `<?php is_mobile(); is_tablet(); // etc ?>` functions in your themes/templates
-* If you want you can also disable the device specific body classes in the WordPress Admin->Settings->mobble setting section
+* <small>Comming Soon</small>
 
-Visit [WordPress.org for a comprehensive guide](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation) on in how to install WordPress plugins.
 
 ## Hooks & Filters
 
