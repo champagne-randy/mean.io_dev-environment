@@ -1,247 +1,130 @@
-/*-------------------------------------------------------------------
-README		MEAN Stack Starter Kit
----------------------------------------------------------------------
-			single page application
-			www.scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
--------------------------------------------------------------------*/
+![mobble](http://cloud.scott.ee/images/mobble.png)
 
+# mobble
 
+* Status: ✔ Active
+* Contributors: [@scottsweb](http://twitter.com/scottsweb)
+* Description: Helper plugin that provides conditional functions for detecting a variety of mobile devices & tablets.
+* Author: [Scott Evans](http://scott.ee)
+* Author URI: [http://scott.ee](http://scott.ee)
+* License: GNU General Public License v2.0
+* License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
----------------------------------------------------------------------
-How to use
----------------------------------------------------------------------
+## About
 
-- update package.json
-	update package name
-	add license
+mobble provides mobile related conditional functions for your site. e.g. `is_iphone()`, `is_mobile()` and `is_tablet()`.
 
-- $ npm install
-	to install all backend dependencies
+CSS media queries are great for creating responsive web designs but they do not always provide enough control. There are times when not all of the content, JavaScript or CSS on a page is relevant for a particular device. With the mobble functions you can make these kind of tweaks to your theme.
 
-- update bower.json
-	update package name
-	list missing front end frameworks for project
+mobble can also add device information to the body class of your theme allowing you to easily target your CSS for different gadgets.
 
-- $ bower install
-	to install all frontend dependencies
+## Installation
 
+To install this plugin:
 
+* Upload the `mobble` folder to the `/wp-content/plugins/` directory
+* Activate the plugin through the 'Plugins' menu in WordPress
+* You can now use `<?php is_mobile(); is_tablet(); // etc ?>` functions in your themes/templates
+* If you want you can also disable the device specific body classes in the WordPress Admin->Settings->mobble setting section
 
+Visit [WordPress.org for a comprehensive guide](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation) on in how to install WordPress plugins.
 
----------------------------------------------------------------------
-ToDo
----------------------------------------------------------------------
+## Hooks & Filters
 
-- Angular best practices
-	- directory structure
-		x research and apply techniques
-		** update views after each dir update
-		** verify that build still works in browser
+...
 
-	- style guide
-		research and apply techniques
-		writing controllers for minification
-		skinny controllers: use services and application states over bloated controllers
-		modularize the app: split app code into components
+## Frequently Asked Questions
 
+###What functions are available?
 
-- SASS best practices
-	- directory structure
-		research and apply techniques
+The most useful ones are:
 
+```
+<?php
+is_handheld(); // any handheld device (phone, tablet, Nintendo)
+is_mobile(); // any type of mobile phone (iPhone, Android, etc)
+is_tablet(); // any tablet device
+is_ios(); // any Apple device (iPhone, iPad, iPod)
+?>
+```
 
-- Gulp best practices
-	- config file
-		once dir structures are define, update tasks to use config file
-		config file will include:
-			port:			where node should attach
-			frontend lib:	which frontend lib are we using for this project
-			app server:		where the app should be deployed after build (if at all)
-	- use Scotch.io gulp starter kit as example on how to write a gulp build
-		https://github.com/scotch-io/gulp-start/blob/master/gulpfile.js
-	- write dev, test, and prod tasks
-		- this is the begining of the dev task
-		- I will use this to launch grunt for dev work
-		- once completed, will use it as a model for prod and test tasks
-		https://www.npmjs.com/package/gulp-nodemon
+You can also use:
 
+```
+<?php
+is_iphone();
+is_ipad();
+is_ipod();
+is_android();
+is_blackberry();
+is_opera_mobile();
+is_symbian();
+is_kindle();
+is_windows_mobile();
+is_motorola();
+is_samsung();
+is_samsung_tablet();
+is_sony_ericsson();
+is_nintendo();
+?>
+```
 
-- Server.js best practices
-	- config file
-		use the same config file to abstract server settings
-		database
-	- directory structure
-		research and apply techniques
-		can I take a modular approach similar to the frontend organization?
-
-
-- Semantic.ui starter kit
-	- move semantic starter code to this repo
-	- update semantic.html file to be a base for sematic frontend projects
-
-
-- Bootstrap starter kit
-	- write a bootstrap.html file to be a base for bootstratp frontend projects
-
-
-- HTML templates
-	- research html templates and compile a pros/cons list
-		jade
-		swig
-
-- Git
-	- create a github remote for this project
-
-
-- Linting
-	- where do I store the linting reports?
-
-
-
-
+Inspecting `Mobile_Detect.php` will also reveal some other useful tools.
 
+###Do you have any examples?
 
+Yup. This first example disables the sidebar for mobile/phone devices:
 
----------------------------------------------------------------------
-ol directory structure
----------------------------------------------------------------------
-
-- app
---------- models/
--------------- nerd.js <!-- the nerd model to handle CRUD -->
------ node.routes.js
-- config
---------- db.js 
-- node_modules <!-- created by npm install -->
-- public <!-- all frontend and angular stuff -->
------ css
------ js
----------- controllers <!-- angular controllers -->
----------- services <!-- angular services -->
----------- app.js <!-- angular application -->
----------- appRoutes.js <!-- angular routes -->
------ img
------ libs <!-- created by bower install -->
------ views 
----------- home.html
----------- nerd.html
----------- geek.html
------ index.html
-- .bowerrc <!-- tells bower where to put files (public/libs) -->
-- bower.json <!-- tells bower which files we need -->
-- package.json <!-- tells npm which packages we need -->
-- server.js <!-- set up our node application -->
-
-
-
-
-
----------------------------------------------------------------------
-new directory structure
----------------------------------------------------------------------
-
+```
+<?php
+if (!is_mobile()) {
+	get_sidebar();
+}
+?>
+```
 
-- server/ 									# All of the Server side code resides in the /server directory.
------- config/     							# Configuration files
------- controllers/							# Server side logic goes here
------- models/     							# Database Schema Models
------- routes/     							# Rest api endpoints for routing
------- views/      							# Swig based html rendering
-- client/									# All of the Client side code resides in the /client directory.
------- app/									# Modularized angular components (directives, views, services, controllers)
---------- components/						# Each component (page) is treated as a mini Angular app (no directives)
----------------- home/ 
-------------------- homeController.js 		# Controller file that handles data for home page
-------------------- homeRoutes.js 			# Routing file to handle all routes related to the home page
-------------------- homeService.js 			# Service file that handles http requests for home page
-------------------- homeView.html 			# (Partial) template for the home page
----------------- blog/
-------------------- blogController.js 		# Controller file that handles data for blog page
-------------------- blogRoutes.js 			# Routing module to handle all routes related to the blog page
-------------------- blogService.js 			# Service file that handles http requests for blog page
-------------------- blogView.html 			# (Partial) template for the blog page
----------------- core/						# Container for compnents that will remain the same accross the app
-------------------- header/
------------------------ headerDirective.js 
------------------------ headerView.html
-------------------- footer/
------------------------ footerDirective.js 
------------------------ footerView.html
---------- config/							# Container for angular routes and modules files
----------------- app.modules.js 			# This file will handle the setup for the Angular app
----------------- app.routes.js 				# This file will handle all the routes and route configurations
----------------- index.html 				# primary (entry point) file where all Angular elements are loaded
---------- images/							# Uncompressed images
---------- libraries/						# Raw front-end libraries
---------- styles/							# Raw Sass files
----------------- base/						# Contains global styles, such as resets, typography, colors, etc.
-------------------- _module.scss
----------------- components/ 				# Contains each self-contained component in its own .scss partial
-------------------- _module.scss
----------------- layout/ 					# Contains styling for larger layout components; e.g. nav, header, footer, etc.
-------------------- _module.scss
----------------- pages/ 					# Contains page-specific styling, if necessary
-------------------- _module.scss
----------------- themes/ 					# Contains styling for different themes
-------------------- _module.scss
----------------- utils/ 					# Contains global mixins, functions, helper selectors, etc.
-------------------- _module.scss
----------------- vendors/ 					# Contains 3rd-party styles, mixins, etc.
-------------------- _module.scss
----------------- main.scss 					# Output file that brings together all of the above parts
---------- shared/							# Container for reusable components (directives or partials) of our site
----------------- sidebar/
-------------------- sidebarDirective.js 
-------------------- sidebarService.js
-------------------- sidebarView.html
----------------- article/
-------------------- articleDirective.js
-------------------- articleView.html
------- public/     							# These are the files that will be served to clients
---------- css/								# responsive-ready compressed images that have been processed for dev
---------- img/								# compiled & minified css files
---------- js/								# minified javascript files
---------- libs/								# frontend libraries
---------- views/							# html files to be served to client
------- index.html 							# primary (entry point) file where all Angular elements are loaded
+This second example loads a specific stylesheet for Apple devices (iPhone, iPod and iPad):
 
+```
+<?php
+if (is_ios()) {
+	wp_enqueue_style('ios', get_template_directory_uri() . '/ios.css');
+}
+?>
+```
 
+###Caching
+Please note that in certain setups caching will cause undesired behaviour. If your cache is set too aggressively PHP will be skipped and the device detection will not work.
 
+## Changelog
 
-
-
-src: http://learn.mean.io/#mean-stack-packages-files-structure
-
-
-
-
------------------------
-commands
------------------------
-
-md -p app/models;
-md -p config;md -p public/css;
-md -p public/js;
-md -p public/js/controllers;
-md -p public/js/services;
-md -p public/img;
-md -p public/libs;
-md -p public/views
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+####1.5
+* Add German translation (props @rpkoller)
+* Minor PHP improvements
+* Mobile Detect 2.8.17
+
+####1.4
+* Run through PHP tidy
+* Mobile detect update to 2.8.13
+
+####1.3
+* Update mobile detect library to 2.7.6
+* Small CSS change for 3.8
+
+####1.2.1
+* Small bug fix on is_mobile()
+* Moved screenshots out of trunk
+
+####1.2
+* Now uses mobile-detect (http://mobiledetect.net/) which provides more accurate and varied detection
+* Mobiles can now be graded (A,B,C) using the mobile-detect API (see mobile-detect.php) or mobiledetect.net
+* is_palm, is_lg, is_nokia will be removed soon - check depricated notices
+* New check for is_kindle - feedback on this one appreciated as I cannot test it
+
+####1.1
+* Correction to the PHP.
+* New body class of .desktop for anything not handheld
+* Tested on 3.2+
+
+####1.0
+* Initial release.
